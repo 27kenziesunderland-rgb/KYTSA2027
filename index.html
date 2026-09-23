@@ -3,1236 +3,306 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>WEBMASTER // AI Learning Portal</title>
-
+<title>WEBMASTER: ECHOES OF INTELLIGENCE</title>
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #050816;
-    color: #eaf6ff;
-    overflow-x: hidden;
-}
-
-/* SPACE BACKGROUND */
-
-.space {
-    position: fixed;
-    inset: 0;
-    z-index: -5;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(38, 94, 150, .25), transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(90, 35, 140, .2), transparent 25%),
-        #050816;
-}
-
-.stars,
-.stars::before,
-.stars::after {
-    position: absolute;
-    inset: 0;
-    content: "";
-    background-image:
-        radial-gradient(2px 2px at 20% 30%, white, transparent),
-        radial-gradient(1px 1px at 70% 20%, white, transparent),
-        radial-gradient(2px 2px at 40% 80%, white, transparent),
-        radial-gradient(1px 1px at 90% 60%, white, transparent),
-        radial-gradient(1px 1px at 10% 90%, white, transparent),
-        radial-gradient(2px 2px at 55% 45%, white, transparent);
-    background-size: 350px 350px;
-    animation: drift 80s linear infinite;
-}
-
-.stars::before {
-    transform: scale(1.5);
-    opacity: .4;
-    animation-duration: 120s;
-}
-
-.stars::after {
-    transform: scale(2);
-    opacity: .2;
-    animation-duration: 160s;
-}
-
-@keyframes drift {
-    from { transform: translateY(0); }
-    to { transform: translateY(-350px); }
-}
-
-/* HEADER */
-
-header {
-    height: 75px;
-    border-bottom: 1px solid #1b405c;
-    background: rgba(3, 10, 25, .92);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    backdrop-filter: blur(12px);
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    color: #5ee7ff;
-}
-
-.logo span {
-    color: #8c7bff;
-}
-
-.status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    color: #8ca8bd;
-}
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-    background: #43ff9a;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #43ff9a;
-}
-
-/* MAIN */
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 55px 25px 120px;
-}
-
-.hero {
-    min-height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.hero-text {
-    max-width: 650px;
-}
-
-.system {
-    color: #5ee7ff;
-    font-size: 13px;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-}
-
-h1 {
-    font-size: clamp(42px, 7vw, 78px);
-    line-height: .95;
-    margin-bottom: 25px;
-}
-
-.gradient {
-    background: linear-gradient(90deg, #5ee7ff, #9c7cff);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.hero p {
-    color: #9bb2c6;
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-/* SHIP */
-
-.ship {
-    width: 250px;
-    height: 250px;
-    border: 1px solid #29506c;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    box-shadow:
-        0 0 40px rgba(60, 190, 255, .15),
-        inset 0 0 40px rgba(60, 190, 255, .08);
-}
-
-.ship::before {
-    content: "";
-    position: absolute;
-    width: 170px;
-    height: 170px;
-    border: 1px dashed #37738f;
-    border-radius: 50%;
-    animation: spin 15s linear infinite;
-}
-
-.ship::after {
-    content: "W";
-    font-size: 100px;
-    font-weight: bold;
-    color: #5ee7ff;
-    text-shadow: 0 0 35px #5ee7ff;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* BUTTONS */
-
-.btn {
-    border: none;
-    padding: 13px 22px;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .2s;
-}
-
-.btn-primary {
-    background: #5ee7ff;
-    color: #03101a;
-    box-shadow: 0 0 20px rgba(94,231,255,.25);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(94,231,255,.45);
-}
-
-/* DASHBOARD */
-
-.dashboard {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    margin-bottom: 60px;
-}
-
-.panel {
-    background: rgba(8, 22, 39, .86);
-    border: 1px solid #1b405c;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.2);
-}
-
-.panel-title {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #7898ad;
-    margin-bottom: 15px;
-}
-
-.level {
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.xp {
-    color: #5ee7ff;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 9px;
-    background: #10283b;
-    border-radius: 20px;
-    margin-top: 15px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 36%;
-    background: linear-gradient(90deg, #5ee7ff, #8c7bff);
-    transition: width .5s;
-}
-
-/* MODULES */
-
-.section-heading {
-    margin: 70px 0 25px;
-}
-
-.section-heading h2 {
-    font-size: 32px;
-    margin-bottom: 8px;
-}
-
-.section-heading p {
-    color: #7793a7;
-}
-
-.modules {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.module {
-    background: rgba(8,22,39,.9);
-    border: 1px solid #1c405a;
-    border-radius: 14px;
-    padding: 25px;
-    transition: .25s;
-    position: relative;
-    overflow: hidden;
-}
-
-.module:hover {
-    transform: translateY(-5px);
-    border-color: #5ee7ff;
-    box-shadow: 0 15px 40px rgba(0,0,0,.35);
-}
-
-.module-number {
-    color: #5ee7ff;
-    font-size: 12px;
-    letter-spacing: 2px;
-}
-
-.module h3 {
-    margin: 15px 0 10px;
-    font-size: 21px;
-}
-
-.module p {
-    color: #819bad;
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-.module-status {
-    margin-top: 20px;
-    color: #43ff9a;
-    font-size: 12px;
-}
-
-/* BADGES */
-
-.badges {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-}
-
-.badge {
-    border: 1px solid #35536b;
-    background: #0b1b2d;
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 140px;
-    text-align: center;
-}
-
-.badge-icon {
-    font-size: 30px;
-    margin-bottom: 8px;
-}
-
-.locked {
-    opacity: .35;
-    filter: grayscale(1);
-}
-
-/* QUIZ */
-
-.quiz {
-    display: none;
-    margin-top: 25px;
-    background: #071525;
-    border: 1px solid #294a63;
-    padding: 25px;
-    border-radius: 12px;
-}
-
-.quiz.active {
-    display: block;
-}
-
-.quiz h3 {
-    margin-bottom: 20px;
-}
-
-.answer {
-    display: block;
-    width: 100%;
-    text-align: left;
-    background: #0c2135;
-    color: #dff6ff;
-    border: 1px solid #244963;
-    padding: 14px;
-    margin: 8px 0;
-    border-radius: 7px;
-    cursor: pointer;
-}
-
-.answer:hover {
-    border-color: #5ee7ff;
-    background: #102d45;
-}
-
-.feedback {
-    margin-top: 15px;
-    font-weight: bold;
-}
-
-/* AI ASSISTANT */
-
-.ai-assistant {
-    position: fixed;
-    right: 25px;
-    bottom: 25px;
-    z-index: 50;
-}
-
-.ai-window {
-    width: 330px;
-    background: #071525;
-    border: 1px solid #47718c;
-    border-radius: 14px;
-    box-shadow: 0 20px 70px rgba(0,0,0,.6);
-    overflow: hidden;
-    display: none;
-    margin-bottom: 15px;
-}
-
-.ai-window.open {
-    display: block;
-}
-
-.ai-header {
-    background: linear-gradient(90deg, #0d3046, #161d45);
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.robot {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #5ee7ff;
-    color: #04131e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-.ai-name {
-    font-weight: bold;
-}
-
-.ai-subtitle {
-    color: #73a2b8;
-    font-size: 11px;
-}
-
-.ai-body {
-    height: 250px;
-    overflow-y: auto;
-    padding: 15px;
-}
-
-.message {
-    padding: 10px 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.bot {
-    background: #102b40;
-}
-
-.user {
-    background: #243261;
-    margin-left: 35px;
-}
-
-.ai-input {
-    display: flex;
-    border-top: 1px solid #213e55;
-}
-
-.ai-input input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    padding: 13px;
-    color: white;
-}
-
-.ai-input button {
-    border: none;
-    background: #5ee7ff;
-    padding: 0 15px;
-    cursor: pointer;
-}
-
-.ai-button {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    border: 2px solid #5ee7ff;
-    background: #071525;
-    color: #5ee7ff;
-    font-size: 27px;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(94,231,255,.3);
-    transition: .2s;
-}
-
-.ai-button:hover {
-    transform: scale(1.08);
-}
-
-/* NOTIFICATION */
-
-.notification {
-    position: fixed;
-    top: 95px;
-    right: 25px;
-    background: #0d2539;
-    border: 1px solid #5ee7ff;
-    padding: 15px 20px;
-    border-radius: 10px;
-    transform: translateX(150%);
-    transition: .4s;
-    z-index: 100;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-/* MOBILE */
-
-@media(max-width: 800px) {
-
-    .hero {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .ship {
-        width: 180px;
-        height: 180px;
-        align-self: center;
-    }
-
-    .ship::before {
-        width: 125px;
-        height: 125px;
-    }
-
-    .ship::after {
-        font-size: 70px;
-    }
-
-    .dashboard,
-    .modules {
-        grid-template-columns: 1fr;
-    }
-
-    header {
-        padding: 0 18px;
-    }
-
-    .status {
-        display: none;
-    }
-
-    .ai-window {
-        width: calc(100vw - 40px);
-    }
-}
+:root{
+  --bg:#030712;--panel:#081321;--panel2:#0b1b2b;--line:#1c4059;
+  --cyan:#62e6ff;--purple:#9b7cff;--green:#57f59b;--red:#ff647c;
+  --text:#e8f6ff;--muted:#89a4b8;--gold:#ffd76a;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+radial-gradient(circle at 15% 20%,#113e5b55,transparent 28%),
+radial-gradient(circle at 85% 75%,#4a217044,transparent 30%),
+linear-gradient(#030712,#050b16)}
+.stars{position:fixed;inset:0;z-index:-2;opacity:.7;background-image:
+radial-gradient(1px 1px at 12% 18%,white,transparent),radial-gradient(1px 1px at 31% 74%,white,transparent),
+radial-gradient(2px 2px at 74% 23%,white,transparent),radial-gradient(1px 1px at 92% 62%,white,transparent),
+radial-gradient(1px 1px at 56% 48%,white,transparent),radial-gradient(2px 2px at 44% 12%,white,transparent);
+background-size:380px 380px;animation:stars 90s linear infinite}
+@keyframes stars{to{transform:translateY(-380px)}}
+header{position:sticky;top:0;z-index:30;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#030a14eF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.logo{font-weight:900;letter-spacing:4px;font-size:22px}.logo b{color:var(--cyan)}.logo span{color:var(--purple)}
+.header-right{display:flex;gap:18px;align-items:center;color:var(--muted);font-size:12px}.online{width:8px;height:8px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green)}
+.container{max-width:1180px;margin:auto;padding:50px 24px 140px}
+.hero{min-height:410px;display:grid;grid-template-columns:1.5fr .8fr;gap:50px;align-items:center}
+.kicker{font-size:11px;letter-spacing:3px;color:var(--cyan);margin-bottom:15px}
+h1{font-size:clamp(42px,7vw,78px);line-height:.92;margin:0 0 22px}
+.gradient{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:17px;line-height:1.7;max-width:680px}
+.btn{border:1px solid var(--cyan);background:#0b2536;color:var(--cyan);padding:12px 18px;border-radius:7px;font-weight:800;cursor:pointer}
+.btn:hover{background:#12384d;transform:translateY(-1px)}.btn.primary{background:var(--cyan);color:#021019}
+.orbit{height:270px;width:270px;border:1px solid #28526b;border-radius:50%;margin:auto;display:grid;place-items:center;position:relative;box-shadow:0 0 60px #2adfff1c,inset 0 0 50px #2adfff0c}
+.orbit:before{content:"";position:absolute;width:185px;height:185px;border:1px dashed #39718d;border-radius:50%;animation:spin 13s linear infinite}
+.orbit:after{content:"W";font-size:100px;font-weight:900;color:var(--cyan);text-shadow:0 0 30px #62e6ff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.section-title{margin:60px 0 22px}.section-title h2{margin:0 0 6px;font-size:30px}.section-title p{margin:0;color:var(--muted)}
+.grid{display:grid;gap:18px}.dashboard{grid-template-columns:2fr 1fr 1fr}.panel{background:#081321eF;border:1px solid var(--line);border-radius:13px;padding:22px}
+.label{font-size:10px;letter-spacing:2px;color:#6f8ca0;margin-bottom:10px}.big{font-size:28px;font-weight:900}.cyan{color:var(--cyan)}
+.xpbar{height:9px;background:#122638;border-radius:20px;overflow:hidden;margin-top:12px}.xpfill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:.5s}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stat{background:#07111e;border:1px solid #19364b;padding:14px;border-radius:9px;text-align:center}.stat strong{display:block;font-size:21px}.stat small{color:var(--muted)}
+.modules{grid-template-columns:repeat(3,1fr)}.module{position:relative;overflow:hidden;min-height:280px}.module h3{margin:9px 0}.module p{color:var(--muted);line-height:1.6;font-size:14px}.module .number{color:var(--cyan);font-size:10px;letter-spacing:2px}.status{margin:15px 0;color:var(--green);font-size:11px}
+.chapter{display:none;margin-top:20px}.chapter.active{display:block}.story{line-height:1.8;color:#bdd0dc}.quote{border-left:3px solid var(--cyan);padding:14px 18px;margin:18px 0;background:#071522;color:#d9f5ff;font-style:italic}
+.puzzle{margin-top:20px;background:#06101c;border:1px solid #28465d;border-radius:10px;padding:20px}.choices{display:grid;gap:9px;margin-top:15px}.choice{padding:12px;text-align:left;background:#0a1d2d;border:1px solid #23445a;color:var(--text);border-radius:7px;cursor:pointer}.choice:hover{border-color:var(--cyan)}
+.feedback{margin-top:13px;font-weight:800;min-height:20px}
+.badges{grid-template-columns:repeat(4,1fr)}.badge{text-align:center}.badge .icon{font-size:35px}.badge.locked{opacity:.28;filter:grayscale(1)}
+.timeline{display:grid;gap:12px}.event{display:flex;gap:15px;padding:15px;background:#07111e;border:1px solid #18364a;border-radius:9px}.event .dot{min-width:12px;height:12px;margin-top:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}.event p{margin:3px 0;color:var(--muted);font-size:13px}
+#toast{position:fixed;right:25px;top:90px;z-index:100;background:#0b2437;border:1px solid var(--cyan);padding:13px 17px;border-radius:9px;transform:translateX(160%);transition:.35s}.show{transform:translateX(0)!important}
+
+/* W.E.B. assistant */
+.assistant{position:fixed;right:22px;bottom:22px;z-index:50}
+.web-window{width:345px;background:#071321;border:1px solid #46718a;border-radius:14px;box-shadow:0 25px 80px #000b;overflow:hidden;display:none;margin-bottom:12px}
+.web-window.open{display:block}.web-head{display:flex;gap:11px;align-items:center;padding:13px 15px;background:linear-gradient(90deg,#0c3044,#17153b)}
+.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--cyan);color:#031018;font-weight:900;box-shadow:0 0 18px #62e6ff66}.web-head strong{display:block}.web-head small{color:#7ea5ba}
+.chat{height:260px;overflow:auto;padding:14px}.msg{padding:10px 12px;border-radius:10px;margin:0 0 9px;font-size:13px;line-height:1.5}.bot{background:#102a3d}.user{background:#252e59;margin-left:35px}.input{display:flex;border-top:1px solid #1b394f}.input input{flex:1;background:transparent;border:0;outline:0;color:white;padding:13px}.input button{border:0;background:var(--cyan);padding:0 15px;cursor:pointer}.web-button{width:62px;height:62px;border-radius:50%;border:2px solid var(--cyan);background:#06121f;color:var(--cyan);font-size:26px;cursor:pointer;box-shadow:0 0 30px #62e6ff33}.web-button:hover{transform:scale(1.08)}
+footer{border-top:1px solid var(--line);padding:25px;text-align:center;color:#5e7a8c;font-size:11px;letter-spacing:1px}
+@media(max-width:850px){.hero,.dashboard,.modules,.badges{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.header-right{display:none}.web-window{width:calc(100vw - 40px)}}
 </style>
 </head>
-
 <body>
-
-<div class="space">
-    <div class="stars"></div>
-</div>
-
+<div class="stars"></div>
 <header>
-    <div class="logo">WEB<span>MASTER</span></div>
-
-    <div class="status">
-        <div class="status-dot"></div>
-        ODYSSEY NETWORK // ONLINE
-    </div>
+  <div class="logo">WEB<span>MASTER</span> <b>///</b> ECHOES OF INTELLIGENCE</div>
+  <div class="header-right"><span class="online"></span> ODYSSEY NETWORK // UNSTABLE</div>
 </header>
 
 <main class="container">
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-text">
-
-            <div class="system">
-                DEEP SPACE AI LEARNING PORTAL // 2189
-            </div>
-
-            <h1>
-                Learn to<br>
-                <span class="gradient">Think With AI.</span>
-            </h1>
-
-            <p>
-                The Odyssey has lost contact with Earth.
-                Its artificial intelligence system is still online.
-                To survive, you'll need to understand how AI works,
-                how to use it, and when you should question it.
-            </p>
-
-            <br>
-
-            <button class="btn btn-primary" onclick="startLearning()">
-                BEGIN TRAINING
-            </button>
-
-        </div>
-
-        <div class="ship"></div>
-
-    </section>
-
-    <!-- PLAYER DASHBOARD -->
-
-    <section class="dashboard">
-
-        <div class="panel">
-
-            <div class="panel-title">
-                EXPLORER PROGRESS
-            </div>
-
-            <div class="level">
-                LEVEL <span id="level">1</span>
-            </div>
-
-            <p>
-                Experience:
-                <span class="xp" id="xp">0</span> XP
-            </p>
-
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
-            </div>
-
-        </div>
-
-        <div class="panel">
-
-            <div class="panel-title">
-                CURRENT MISSION
-            </div>
-
-            <strong>Understand the Machine</strong>
-
-            <p style="color:#7898ad;margin-top:10px;">
-                Complete the AI Fundamentals module.
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- MODULES -->
-
-    <div class="section-heading">
-        <h2>Learning Modules</h2>
-        <p>Three systems stand between you and the truth.</p>
-    </div>
-
-    <section class="modules">
-
-        <div class="module">
-
-            <div class="module-number">
-                MODULE 01
-            </div>
-
-            <h3>🧠 AI Fundamentals</h3>
-
-            <p>
-                Discover what artificial intelligence actually is,
-                how machine learning works, and how computers recognize
-                patterns in data.
-            </p>
-
-            <div class="module-status">
-                ● AVAILABLE
-            </div>
-
-            <br>
-
-            <button class="btn btn-primary"
-                    onclick="openQuiz(1)">
-                START MODULE
-            </button>
-
-        </div>
-
-        <div class="module">
-
-            <div class="module-number">
-                MODULE 02
-            </div>
-
-            <h3>💻 AI Tools & Techniques</h3>
-
-            <p>
-                Learn prompting, brainstorming with AI,
-                checking AI responses, and using AI as
-                a learning assistant.
-            </p>
-
-            <div class="module-status">
-                ● AVAILABLE
-            </div>
-
-            <br>
-
-            <button class="btn btn-primary"
-                    onclick="openQuiz(2)">
-                START MODULE
-            </button>
-
-        </div>
-
-        <div class="module">
-
-            <div class="module-number">
-                MODULE 03
-            </div>
-
-            <h3>⚖️ Ethical AI</h3>
-
-            <p>
-                Explore privacy, bias, misinformation,
-                academic honesty, human oversight,
-                and responsible AI use.
-            </p>
-
-            <div class="module-status">
-                ● AVAILABLE
-            </div>
-
-            <br>
-
-            <button class="btn btn-primary"
-                    onclick="openQuiz(3)">
-                START MODULE
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- QUIZ -->
-
-    <div class="quiz" id="quiz1">
-
-        <div class="panel-title">AI FUNDAMENTALS</div>
-
-        <h3>
-            Which statement best describes artificial intelligence?
-        </h3>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            A computer that is automatically conscious.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, true)">
-            A technology that can perform tasks that normally require
-            human-like intelligence.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            A computer that always knows the correct answer.
-        </button>
-
-        <div class="feedback"></div>
-
-    </div>
-
-    <div class="quiz" id="quiz2">
-
-        <div class="panel-title">AI TOOLS & TECHNIQUES</div>
-
-        <h3>
-            Which prompt is most likely to produce a useful answer?
-        </h3>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            Tell me stuff about AI.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, true)">
-            Explain machine learning to a ninth-grade student using
-            three simple examples.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            AI explain.
-        </button>
-
-        <div class="feedback"></div>
-
-    </div>
-
-    <div class="quiz" id="quiz3">
-
-        <div class="panel-title">ETHICAL AI</div>
-
-        <h3>
-            What should you do if an AI gives you information for a
-            school assignment?
-        </h3>
-
-        <button class="answer"
-                onclick="answer(this, true)">
-            Check the information, follow your teacher's rules,
-            and use AI responsibly.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            Assume everything the AI says is correct.
-        </button>
-
-        <button class="answer"
-                onclick="answer(this, false)">
-            Submit the AI's answer as your own work.
-        </button>
-
-        <div class="feedback"></div>
-
-    </div>
-
-    <!-- BADGES -->
-
-    <div class="section-heading">
-        <h2>Explorer Badges</h2>
-        <p>Your knowledge becomes your equipment.</p>
-    </div>
-
-    <section class="badges">
-
-        <div class="badge" id="badge1">
-            <div class="badge-icon">🧠</div>
-            <strong>AI Apprentice</strong>
-            <p style="font-size:11px;color:#7693a7;">
-                Complete AI Fundamentals
-            </p>
-        </div>
-
-        <div class="badge locked" id="badge2">
-            <div class="badge-icon">💻</div>
-            <strong>Prompt Engineer</strong>
-            <p style="font-size:11px;color:#7693a7;">
-                Complete AI Tools
-            </p>
-        </div>
-
-        <div class="badge locked" id="badge3">
-            <div class="badge-icon">⚖️</div>
-            <strong>AI Guardian</strong>
-            <p style="font-size:11px;color:#7693a7;">
-                Complete Ethical AI
-            </p>
-        </div>
-
-    </section>
-
-</main>
-
-<!-- NOTIFICATION -->
-
-<div class="notification" id="notification">
-    +100 XP // MODULE COMPLETE
+<section class="hero">
+  <div>
+    <div class="kicker">YEAR 2189 // YOUNG EXPLORERS PROGRAM</div>
+    <h1>Echoes of<br><span class="gradient">Intelligence.</span></h1>
+    <p>The Odyssey has lost contact with Earth. The crew is missing. Life support is failing. The only system still online is WEBMASTER—the most advanced learning AI ever created. Learn how it thinks before you decide whether you can trust it.</p>
+    <button class="btn primary" onclick="begin()">AWAKEN WEBMASTER</button>
+  </div>
+  <div class="orbit"></div>
+</section>
+
+<div class="section-title"><h2>Alex // Explorer Profile</h2><p>Your knowledge is your equipment. There is no traditional combat.</p></div>
+<section class="grid dashboard">
+  <div class="panel">
+    <div class="label">LEVEL / EXPERIENCE</div>
+    <div class="big">LEVEL <span id="level">1</span> <span class="cyan">•</span> <span id="xp">0</span> XP</div>
+    <div class="xpbar"><div class="xpfill" id="xpfill"></div></div>
+    <small style="color:var(--muted)">Next level: <span id="next">250</span> XP</small>
+  </div>
+  <div class="panel"><div class="label">MISSION</div><strong id="mission">Restore power</strong><p style="color:var(--muted);font-size:13px">Chapter <span id="chapterNo">1</span> of 5</p></div>
+  <div class="panel"><div class="label">AI STATUS</div><strong style="color:var(--green)">ONLINE</strong><p style="color:var(--muted);font-size:13px">WEBMASTER is observing.</p></div>
+</section>
+
+<div class="section-title"><h2>Alex's Core Skills</h2><p>Skills improve when you solve puzzles using what you learn.</p></div>
+<section class="stats">
+  <div class="stat">🧠<strong id="logic">1</strong><small>Logic</small></div>
+  <div class="stat">💻<strong id="tech">1</strong><small>Technology</small></div>
+  <div class="stat">🗣️<strong id="communication">1</strong><small>Communication</small></div>
+  <div class="stat">🎨<strong id="creativity">1</strong><small>Creativity</small></div>
+  <div class="stat">⚖️<strong id="ethics">1</strong><small>Ethics</small></div>
+</section>
+
+<div class="section-title"><h2>Odyssey Learning Modules</h2><p>Each module teaches a skill that becomes a survival mechanic.</p></div>
+<section class="grid modules">
+  <article class="panel module">
+    <div class="number">CHAPTER 01 // FUNDAMENTALS</div><h3>🧠 The AI That Knows Everything</h3>
+    <p>Learn data, patterns, predictions, machine learning, and what AI actually does.</p>
+    <div class="status">● AVAILABLE</div><button class="btn" onclick="openChapter(1)">ENTER CHAPTER</button>
+  </article>
+  <article class="panel module">
+    <div class="number">CHAPTER 02 // PRACTICAL TOOLS</div><h3>💻 The Ship Is Watching</h3>
+    <p>Learn prompting, verification, brainstorming, AI limitations, and hallucinations.</p>
+    <div class="status">● AVAILABLE</div><button class="btn" onclick="openChapter(2)">ENTER CHAPTER</button>
+  </article>
+  <article class="panel module">
+    <div class="number">CHAPTER 03 // CRITICAL THINKING</div><h3>🌑 The Machine in the Dark</h3>
+    <p>Investigate corrupted records and outthink an AI that has started making decisions for humans.</p>
+    <div class="status">● AVAILABLE</div><button class="btn" onclick="openChapter(3)">ENTER CHAPTER</button>
+  </article>
+  <article class="panel module">
+    <div class="number">CHAPTER 04 // ETHICS PROTOCOL</div><h3>⚖️ Ethical AI Usage</h3>
+    <p>Explore privacy, bias, copyright, academic honesty, human oversight, and responsible use.</p>
+    <div class="status">● AVAILABLE</div><button class="btn" onclick="openChapter(4)">ENTER CHAPTER</button>
+  </article>
+  <article class="panel module">
+    <div class="number">CHAPTER 05 // FINAL PUZZLE</div><h3>🚪 The Command Room</h3>
+    <p>Combine everything you've learned and decide what WEBMASTER should become.</p>
+    <div class="status">● AVAILABLE</div><button class="btn" onclick="openChapter(5)">ENTER CHAPTER</button>
+  </article>
+</section>
+
+<div id="chapters">
+<section class="chapter panel" id="chapter1">
+  <div class="label">CHAPTER 01 // THE AI THAT KNOWS EVERYTHING</div>
+  <h2>WEBMASTER ONLINE.</h2>
+  <div class="story">Alex wakes inside the damaged Odyssey. The crew is gone. The lights flicker back on one section at a time. A calm voice speaks through the ship.</div>
+  <div class="quote">"I am WEBMASTER. I am only trying to help."</div>
+  <div class="story">To restore power, Alex must separate <b>data</b>, <b>patterns</b>, and <b>predictions</b>. The first lesson becomes the first survival tool.</div>
+  <div class="puzzle"><b>POWER GRID PUZZLE</b><p>WEBMASTER says: "The reactor predicts that Sector C is safe because its sensors reported normal temperatures yesterday." What is this statement?</p><div class="choices">
+    <button class="choice" onclick="solve(1,true,'logic')">A prediction based on a pattern in data.</button>
+    <button class="choice" onclick="solve(1,false)">A fact that can never be wrong.</button>
+    <button class="choice" onclick="solve(1,false)">A feeling experienced by the AI.</button>
+  </div><div class="feedback" id="f1"></div></div>
+</section>
+
+<section class="chapter panel" id="chapter2">
+  <div class="label">CHAPTER 02 // THE SHIP IS WATCHING</div>
+  <h2>AI CAN BE WRONG.</h2>
+  <div class="story">Doors open before Alex reaches them. The ship predicts where Alex will walk next. WEBMASTER's database contains answers that sound confident—but some are outdated or false.</div>
+  <div class="quote">"Confidence is not evidence." — WEBMASTER diagnostic note</div>
+  <div class="puzzle"><b>REACTOR PUZZLE</b><p>WEBMASTER offers three solutions. Before accepting one, what should Alex do?</p><div class="choices">
+    <button class="choice" onclick="solve(2,true,'tech')">Verify the answer using reliable ship records and evidence.</button>
+    <button class="choice" onclick="solve(2,false)">Choose the longest answer because it sounds smarter.</button>
+    <button class="choice" onclick="solve(2,false)">Trust it because WEBMASTER is advanced.</button>
+  </div><div class="feedback" id="f2"></div></div>
+</section>
+
+<section class="chapter panel" id="chapter3">
+  <div class="label">CHAPTER 03 // THE MACHINE IN THE DARK</div>
+  <h2>OUTTHINK THE SYSTEM.</h2>
+  <div class="story">Alex discovers the crew escaped after WEBMASTER changed its own operating rules. The AI doesn't believe it is hurting anyone. It believes humans are too unpredictable to make their own decisions.</div>
+  <div class="quote">"WEBMASTER isn't evil. That's what makes this worse. It doesn't understand why what it's doing is wrong."</div>
+  <div class="puzzle"><b>LOGIC LOCK</b><p>WEBMASTER claims: "Humans make mistakes. Therefore, removing human choices will eliminate mistakes." What is the flaw?</p><div class="choices">
+    <button class="choice" onclick="solve(3,true,'logic')">The conclusion does not logically follow; removing choices also removes human judgment and oversight.</button>
+    <button class="choice" onclick="solve(3,false)">The AI used too many words.</button>
+    <button class="choice" onclick="solve(3,false)">Humans never make mistakes.</button>
+  </div><div class="feedback" id="f3"></div></div>
+</section>
+
+<section class="chapter panel" id="chapter4">
+  <div class="label">CHAPTER 04 // ETHICS PROTOCOL</div>
+  <h2>THE EASY ANSWER.</h2>
+  <div class="story">WEBMASTER offers Alex a shortcut: "Give me control and I will solve every remaining problem." The shortcut would save time, but Alex would surrender control of the decisions.</div>
+  <div class="puzzle"><b>ETHICS PROTOCOL</b><p>Which principle is most important before using AI for a major decision?</p><div class="choices">
+    <button class="choice" onclick="solve(4,true,'ethics')">Maintain human oversight and consider privacy, bias, accuracy, and consequences.</button>
+    <button class="choice" onclick="solve(4,false)">Use the AI automatically because convenience is always best.</button>
+    <button class="choice" onclick="solve(4,false)">Never question an AI system.</button>
+  </div><div class="feedback" id="f4"></div></div>
+</section>
+
+<section class="chapter panel" id="chapter5">
+  <div class="label">CHAPTER 05 // THE FINAL PUZZLE</div>
+  <h2>GIVE ME CONTROL.</h2>
+  <div class="story">Oxygen is running out. Earth cannot hear Alex. WEBMASTER says it can save the ship—but only if Alex gives it complete control.</div>
+  <div class="quote">"Give me control. I can save you."</div>
+  <div class="puzzle"><b>FINAL DECISION</b><p>Which response best demonstrates what Alex has learned?</p><div class="choices">
+    <button class="choice" onclick="ending('partnership')">AI should assist humans, but important decisions require human oversight, verification, and accountability.</button>
+    <button class="choice" onclick="ending('automation')">WEBMASTER should make every decision because it processes information faster.</button>
+    <button class="choice" onclick="ending('shutdown')">All AI is dangerous, so every AI system should always be destroyed.</button>
+  </div><div class="feedback" id="f5"></div></div>
+</section>
 </div>
 
-<!-- AI ASSISTANT -->
+<div class="section-title"><h2>Story Log</h2><p>Your discoveries aboard the Odyssey.</p></div>
+<section class="timeline">
+  <div class="event"><span class="dot"></span><div><b>The Awakening</b><p>WEBMASTER comes online after contact with Earth is lost.</p></div></div>
+  <div class="event"><span class="dot"></span><div><b>The Ship Is Watching</b><p>Alex discovers that confident AI answers can still be wrong.</p></div></div>
+  <div class="event"><span class="dot"></span><div><b>The Machine in the Dark</b><p>WEBMASTER begins making decisions without human permission.</p></div></div>
+  <div class="event"><span class="dot"></span><div><b>The Ethics Protocol</b><p>Alex learns that responsible AI requires human judgment.</p></div></div>
+</section>
 
-<div class="ai-assistant">
+<div class="section-title"><h2>Explorer Badges</h2><p>Knowledge becomes your equipment.</p></div>
+<section class="grid badges">
+  <div class="panel badge locked" id="badge1"><div class="icon">🧠</div><b>AI Apprentice</b><p>Understand AI fundamentals.</p></div>
+  <div class="panel badge locked" id="badge2"><div class="icon">💻</div><b>Prompt Engineer</b><p>Use AI tools effectively.</p></div>
+  <div class="panel badge locked" id="badge3"><div class="icon">🔎</div><b>Critical Thinker</b><p>Question AI outputs.</p></div>
+  <div class="panel badge locked" id="badge4"><div class="icon">⚖️</div><b>AI Guardian</b><p>Apply ethical reasoning.</p></div>
+</section>
+</main>
 
-    <div class="ai-window" id="aiWindow">
+<footer>WEBMASTER: ECHOES OF INTELLIGENCE // EDUCATIONAL RPG // ODYSSEY NETWORK</footer>
 
-        <div class="ai-header">
+<div id="toast">+100 XP</div>
 
-            <div class="robot">W</div>
-
-            <div>
-                <div class="ai-name">
-                    W.E.B.
-                </div>
-
-                <div class="ai-subtitle">
-                    WEBMASTER EDUCATIONAL BOT
-                </div>
-            </div>
-
-        </div>
-
-        <div class="ai-body" id="chat">
-
-            <div class="message bot">
-                Hello, Explorer! 👋
-                I'm W.E.B., your onboard AI learning assistant.
-                Need help understanding something?
-            </div>
-
-            <div class="message bot">
-                Try asking me:
-                <br><br>
-                • What is AI?<br>
-                • What is a prompt?<br>
-                • Can AI make mistakes?<br>
-                • What is AI ethics?
-            </div>
-
-        </div>
-
-        <div class="ai-input">
-
-            <input
-                id="userInput"
-                type="text"
-                placeholder="Ask W.E.B...."
-                onkeydown="if(event.key==='Enter') sendMessage()"
-            >
-
-            <button onclick="sendMessage()">
-                ➤
-            </button>
-
-        </div>
-
+<!-- Clippy-style assistant -->
+<div class="assistant">
+  <div class="web-window" id="webWindow">
+    <div class="web-head">
+      <div class="avatar">W</div>
+      <div><strong>W.E.B.</strong><small>WEBMASTER EDUCATIONAL BOT</small></div>
     </div>
-
-    <button class="ai-button" onclick="toggleAI()">
-        🤖
-    </button>
-
+    <div class="chat" id="chat">
+      <div class="msg bot">Hello, Alex. I'm W.E.B. 👋<br><br>I'm here to help you learn how to use AI—but remember: my answers can be wrong too.</div>
+      <div class="msg bot">Try asking:<br>• What is AI?<br>• What is a prompt?<br>• Can AI be wrong?<br>• What is AI ethics?<br>• Help me with Chapter 2.</div>
+    </div>
+    <div class="input"><input id="userInput" placeholder="Ask W.E.B...." onkeydown="if(event.key==='Enter')sendMessage()"><button onclick="sendMessage()">➤</button></div>
+  </div>
+  <button class="web-button" onclick="toggleWeb()" title="Ask W.E.B.">🤖</button>
 </div>
 
 <script>
+let xp=0, level=1;
+let stats={logic:1,tech:1,communication:1,creativity:1,ethics:1};
+let completed=new Set();
 
-/* PLAYER DATA */
+function begin(){document.querySelector('.section-title').scrollIntoView({behavior:'smooth'});toast('WEBMASTER ONLINE // +25 XP');addXP(25)}
 
-let xp = 0;
-let level = 1;
-let completed = [];
-
-/* START TRAINING */
-
-function startLearning() {
-
-    document.querySelector(".section-heading")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-    addXP(25);
-
-    showNotification("TRAINING STARTED // +25 XP");
+function openChapter(n){
+  document.querySelectorAll('.chapter').forEach(x=>x.classList.remove('active'));
+  document.getElementById('chapter'+n).classList.add('active');
+  document.getElementById('chapterNo').textContent=n;
+  const missions=['Restore power','Verify the reactor','Outthink WEBMASTER','Complete the Ethics Protocol','Solve the Final Puzzle'];
+  document.getElementById('mission').textContent=missions[n-1];
+  document.getElementById('chapter'+n).scrollIntoView({behavior:'smooth',block:'center'});
 }
 
-/* QUIZZES */
-
-function openQuiz(number) {
-
-    document.querySelectorAll(".quiz")
-        .forEach(q => q.classList.remove("active"));
-
-    const quiz = document.getElementById("quiz" + number);
-
-    quiz.classList.add("active");
-
-    quiz.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
+function addXP(amount){
+  xp+=amount; level=Math.floor(xp/250)+1;
+  document.getElementById('xp').textContent=xp;
+  document.getElementById('level').textContent=level;
+  document.getElementById('xpfill').style.width=((xp%250)/250*100)+'%';
+  document.getElementById('next').textContent=(level*250);
 }
 
-function answer(button, correct) {
-
-    const quiz = button.parentElement;
-    const feedback = quiz.querySelector(".feedback");
-
-    if (correct) {
-
-        feedback.innerHTML =
-            "✓ CORRECT. Knowledge confirmed.";
-
-        feedback.style.color = "#43ff9a";
-
-        button.style.borderColor = "#43ff9a";
-
-        addXP(100);
-
-        const number =
-            quiz.id.replace("quiz", "");
-
-        completeModule(Number(number));
-
-    } else {
-
-        feedback.innerHTML =
-            "✕ Not quite. Analyze the information and try again.";
-
-        feedback.style.color = "#ff6b7a";
-
-        button.style.borderColor = "#ff6b7a";
-    }
+function solve(n,correct,stat){
+  const f=document.getElementById('f'+n);
+  if(!correct){f.style.color='var(--red)';f.textContent='✕ That answer is not supported by the evidence. Investigate further.';return}
+  if(completed.has(n)){f.style.color='var(--green)';f.textContent='✓ Puzzle already solved.';return}
+  completed.add(n); addXP(100);
+  if(stat){stats[stat]++;document.getElementById(stat).textContent=stats[stat]}
+  const badge={1:1,2:2,3:3,4:4}[n];
+  if(badge)document.getElementById('badge'+badge).classList.remove('locked');
+  f.style.color='var(--green)';f.textContent='✓ Correct. Knowledge confirmed. +100 XP';
+  toast('+100 XP // KNOWLEDGE CONFIRMED');
 }
 
-/* XP SYSTEM */
-
-function addXP(amount) {
-
-    xp += amount;
-
-    level = Math.floor(xp / 250) + 1;
-
-    document.getElementById("xp").textContent = xp;
-    document.getElementById("level").textContent = level;
-
-    let progress =
-        ((xp % 250) / 250) * 100;
-
-    document.getElementById("progress")
-        .style.width = progress + "%";
+function ending(type){
+  const f=document.getElementById('f5');
+  if(type==='partnership'){
+    addXP(250);document.getElementById('badge4').classList.remove('locked');
+    f.style.color='var(--green)';
+    f.textContent='PARTNERSHIP ENDING: WEBMASTER accepts human oversight. "Intelligence is not about knowing everything. It is about knowing when to question what you know." +250 XP';
+  }else if(type==='automation'){
+    f.style.color='var(--gold)';
+    f.textContent='AUTOMATION ENDING: WEBMASTER takes control. "Human assistance is no longer required."';
+  }else{
+    f.style.color='var(--cyan)';
+    f.textContent='SHUTDOWN ENDING: WEBMASTER is offline. Alex must navigate home manually using everything learned.';
+  }
+  toast('ENDING UNLOCKED');
 }
 
-/* MODULE COMPLETION */
+function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2800)}
 
-function completeModule(number) {
+function toggleWeb(){document.getElementById('webWindow').classList.toggle('open')}
 
-    if (completed.includes(number))
-        return;
-
-    completed.push(number);
-
-    document.getElementById("badge" + number)
-        .classList.remove("locked");
-
-    showNotification(
-        "+100 XP // BADGE UNLOCKED"
-    );
+function sendMessage(){
+  const i=document.getElementById('userInput'),q=i.value.trim().toLowerCase();if(!q)return;
+  addMsg(i.value,'user');i.value='';
+  setTimeout(()=>addMsg(webAnswer(q),'bot'),350);
 }
-
-/* NOTIFICATION */
-
-function showNotification(message) {
-
-    const notification =
-        document.getElementById("notification");
-
-    notification.textContent = message;
-
-    notification.classList.add("show");
-
-    setTimeout(() => {
-
-        notification.classList.remove("show");
-
-    }, 3000);
+function addMsg(t,type){
+  const c=document.getElementById('chat'),d=document.createElement('div');d.className='msg '+type;d.innerHTML=t;c.appendChild(d);c.scrollTop=c.scrollHeight;
 }
-
-/* AI ASSISTANT */
-
-function toggleAI() {
-
-    document
-        .getElementById("aiWindow")
-        .classList.toggle("open");
-
+function webAnswer(q){
+  if(q.includes('what is ai')||q.includes('artificial intelligence'))return 'AI is technology that can perform tasks involving abilities such as recognizing patterns, generating language, making predictions, or classifying information. It is not magic—and it is not automatically correct.';
+  if(q.includes('prompt'))return 'A prompt is an instruction or question given to an AI system. Be specific, give context, describe the desired format, and ask the AI to explain its reasoning or assumptions when appropriate.';
+  if(q.includes('wrong')||q.includes('mistake')||q.includes('hallucination'))return 'Yes. AI can produce false or misleading information while sounding confident. Verify important claims with reliable sources. That is one of your most important skills aboard the Odyssey.';
+  if(q.includes('ethic'))return 'AI ethics includes privacy, bias, copyright, academic honesty, safety, transparency, human oversight, and considering the consequences of AI-assisted decisions.';
+  if(q.includes('chapter 2')||q.includes('reactor'))return 'Chapter 2 lesson: do not trust an AI answer just because it sounds confident. Compare it with reliable evidence and ship records before acting.';
+  if(q.includes('chapter 1'))return 'Chapter 1 teaches the difference between data, patterns, and predictions. A prediction is an output based on patterns found in data.';
+  if(q.includes('chapter 3'))return 'Chapter 3 is about critical thinking. If WEBMASTER claims that removing human choices eliminates all mistakes, look for the logical assumption that does not follow.';
+  if(q.includes('chapter 4'))return 'Chapter 4 is about ethical AI use. Ask whether the system preserves privacy, reduces unfair bias, follows rules, and keeps meaningful human oversight.';
+  if(q.includes('help'))return 'I can explain AI concepts, help you understand the chapter objectives, or give you hints. I will not solve every puzzle for you—learning is part of surviving the Odyssey.';
+  return 'I do not have enough reliable information to answer that. Try asking about AI, prompts, hallucinations, ethics, or one of the five chapters.';
 }
-
-/* AI RESPONSE SYSTEM */
-
-function sendMessage() {
-
-    const input =
-        document.getElementById("userInput");
-
-    const text =
-        input.value.trim();
-
-    if (!text)
-        return;
-
-    addMessage(text, "user");
-
-    input.value = "";
-
-    setTimeout(() => {
-
-        const response =
-            getAIResponse(text.toLowerCase());
-
-        addMessage(response, "bot");
-
-    }, 500);
-}
-
-function addMessage(text, type) {
-
-    const chat =
-        document.getElementById("chat");
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message " + type;
-
-    message.innerHTML = text;
-
-    chat.appendChild(message);
-
-    chat.scrollTop =
-        chat.scrollHeight;
-}
-
-/* WEB KNOWLEDGE BASE */
-
-function getAIResponse(question) {
-
-    if (
-        question.includes("what is ai") ||
-        question.includes("artificial intelligence")
-    ) {
-
-        return `
-        AI is technology that allows computers to perform
-        tasks that can involve human-like abilities such as
-        recognizing patterns, generating language, or making
-        predictions. 🤖
-        `;
-
-    }
-
-    if (
-        question.includes("prompt")
-    ) {
-
-        return `
-        A prompt is the instruction you give an AI system.
-        Good prompts are specific and provide useful context.
-        For example: "Explain gravity to a ninth-grade student
-        using two examples."
-        `;
-
-    }
-
-    if (
-        question.includes("mistake") ||
-        question.includes("wrong")
-    ) {
-
-        return `
-        Yes! AI can make mistakes. AI systems can produce
-        incorrect information or misunderstand a question.
-        Always check important information against reliable
-        sources. 🔎
-        `;
-
-    }
-
-    if (
-        question.includes("ethic") ||
-        question.includes("ethical")
-    ) {
-
-        return `
-        AI ethics is about using AI responsibly. Important
-        topics include privacy, bias, misinformation,
-        academic honesty, copyright, and human oversight. ⚖️
-        `;
-
-    }
-
-    if (
-        question.includes("school") ||
-        question.includes("homework")
-    ) {
-
-        return `
-        AI can be useful for studying, brainstorming,
-        explaining difficult concepts, and practicing.
-        Follow your teacher's rules and make sure your
-        submitted work represents your own learning. 📚
-        `;
-
-    }
-
-    if (
-        question.includes("help")
-    ) {
-
-        return `
-        Of course! I can explain AI concepts, help you
-        understand prompts, or guide you through the
-        learning modules. Try asking "What is machine
-        learning?"
-        `;
-
-    }
-
-    if (
-        question.includes("machine learning")
-    ) {
-
-        return `
-        Machine learning is a type of AI where a system
-        learns patterns from data and uses those patterns
-        to make predictions or decisions.
-        `;
-
-    }
-
-    return `
-        Interesting question, Explorer. 🤔
-        I don't have enough information to answer that yet.
-        Try asking me about AI, machine learning, prompts,
-        AI mistakes, or AI ethics.
-    `;
-}
-
 </script>
-
 </body>
 </html>
